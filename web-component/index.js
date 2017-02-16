@@ -1,0 +1,1 @@
+import './wc-card/index.html';

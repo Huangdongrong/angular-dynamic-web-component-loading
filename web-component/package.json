@@ -1,0 +1,35 @@
+{
+    "name": "@manekinekko/web-component-webpack-starter",
+    "version": "1.0.0",
+    "license": "MIT",
+    "author": {
+        "name": "Wassim Chegham",
+        "email": "github@wassimchegham.com"
+    },
+    "engines": {
+        "node": ">= 5.4.1"
+    },
+    "main": "dist/index.js",
+    "scripts": {
+        "clean": "rimraf dist/",
+        "build": "npm run clean && npm run webpack",
+        "start": "npm run build",
+        "webpack": "webpack --config webpack.config.js",
+        "server": "http-server -p 8000"
+    },
+    "private": false,
+    "dependencies": {
+        "@webcomponents/custom-elements": "^1.0.0-alpha.3",
+        "babel-core": "^6.23.1",
+        "babel-loader": "^6.3.2",
+        "babel-preset-es2015": "^6.22.0",
+        "http-server": "^0.9.0",
+        "rimraf": "^2.5.4",
+        "wc-loader": "^1.1.1",
+        "webpack": "^2.2.1"
+    },
+    "devDependencies": {
+        "@types/jasmine": "2.2.30",
+        "@types/node": "6.0.54"
+    }
+}

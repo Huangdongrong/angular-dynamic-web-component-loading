@@ -1,0 +1,82 @@
+<template>
+  <style>
+    :host {
+      overflow: hidden;
+      color: rgba(0,0,0,0.87);
+      background: white;
+      min-height: 100px;
+      min-width: 400px;
+      display: inline-block;
+      vertical-align: top;
+      box-shadow: 0 5px 6px -3px rgba(0,0,0,.2),0 9px 12px 1px rgba(0,0,0,.14),0 3px 16px 2px rgba(0,0,0,.12);
+    }
+    ::content p {
+      padding: 4px;
+    }
+    h1 {
+      margin: 0;
+      font-size: 1.3em;
+      padding: 12px 12px;
+      color: white;
+      background: #26a69a;
+    }
+
+  </style>
+
+  <h1 id="title" hidden></h1>
+
+  <slot></slot>
+  
+</template>
+<style>
+    wc-card {
+        margin: 10px;
+        height: 250px;
+        width: 600px;
+    }
+    
+    wc-card.theme-dark {
+        background: #26a69a;
+        color: white;
+    }
+</style>
+<script>
+    export class WcElement extends HTMLElement {
+
+        constructor() {
+            super();
+        }
+
+        static get observedAttributes() {
+            return [];
+        }
+
+        connectedCallback() {
+            alert('web component loaded from http://localhost:8000/build/main.bundle.js');
+            setTimeout(() => this.fire('connectedCallback'), 0);
+        }
+
+        disconnectedCallback() {
+            this.fire('disconnectedCallback');
+        }
+
+        attributeChangedCallback(attributeName, previousValue, currentValue) {
+            this.fire('attributeChanged');
+        }
+
+        adoptedCallback() {
+            this.fire('adoptedCallback');
+        }
+
+        fire(type, data = {}) {
+            const event = new Event(type, {
+                bubbles: true,
+                cancelable: true
+            });
+            this.dispatchEvent(event);
+        }
+
+    }
+
+    window.customElements.define('wc-element', WcElement);
+</script>
